@@ -4,6 +4,21 @@ import PropTypes from "prop-types";
 export const PokemonInfo = ({ name, base }) => (
   <div>
     <h1>{name.english}</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Stats</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Object.keys(base).map((key) => (
+          <tr key={key}>
+            <td>{key}</td>
+            <td>{base[key]}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 );
 
