@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import pokemon from "./pokemon.json";
 import { PokemonRow } from "./components/PokemonRow";
+import { PokemonInfo } from "./components/PokemonInfo";
 
 function App() {
   const [filter, setFilter] = React.useState("");
@@ -9,7 +10,7 @@ function App() {
 
   const handleOnSelect = (pokemon) => {
     setSelectedItem(pokemon);
-    console.log( pokemon.name.english );
+    console.log(pokemon.name.english);
   };
 
   return (
@@ -55,11 +56,7 @@ function App() {
             </tbody>
           </table>
         </div>
-        {selectedItem && (
-          <div>
-            <h1>{selectedItem.name.english}</h1>
-          </div>
-        )}
+        {selectedItem && <PokemonInfo {...selectedItem} />}
       </div>
     </div>
   );
