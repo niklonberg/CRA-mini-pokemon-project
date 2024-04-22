@@ -7,6 +7,11 @@ function App() {
   const [filter, setFilter] = React.useState("");
   const [selectedItem, setSelectedItem] = React.useState("");
 
+  const handleOnSelect = (pokemon) => {
+    setSelectedItem(pokemon);
+    console.log( pokemon.name.english );
+  };
+
   return (
     <div
       style={{
@@ -41,7 +46,11 @@ function App() {
                 )
                 .slice(0, 20)
                 .map((pokemon) => (
-                  <PokemonRow key={pokemon.id} pokemon={pokemon} />
+                  <PokemonRow
+                    key={pokemon.id}
+                    pokemon={pokemon}
+                    onSelect={handleOnSelect}
+                  />
                 ))}
             </tbody>
           </table>
