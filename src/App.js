@@ -4,6 +4,8 @@ import pokemon from "./pokemon.json";
 import { PokemonRow } from "./components/PokemonRow";
 
 function App() {
+  const [filter, setFilter] = React.useState("");
+
   return (
     <div
       style={{
@@ -13,6 +15,7 @@ function App() {
       }}
     >
       <h1 className="title">Pokemon search</h1>
+      <input value={filter} onChange={(e) => setFilter(e.target.value)} />
       <table width="100%">
         <thead>
           <tr>
