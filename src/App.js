@@ -15,25 +15,37 @@ function App() {
       }}
     >
       <h1 className="title">Pokemon search</h1>
-      <input value={filter} onChange={(e) => setFilter(e.target.value)} />
-      <table width="100%">
-        <thead>
-          <tr>
-            <th>Pokemon</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pokemon
-            .filter((pokemon) =>
-              pokemon.name.english.toLowerCase().includes(filter.toLowerCase())
-            )
-            .slice(0, 20)
-            .map((pokemon) => (
-              <PokemonRow key={pokemon.id} pokemon={pokemon} />
-            ))}
-        </tbody>
-      </table>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "70% 30%",
+          gridColumnGap: "1rem",
+        }}
+      >
+        <div>
+          <input value={filter} onChange={(e) => setFilter(e.target.value)} />
+          <table width="100%">
+            <thead>
+              <tr>
+                <th>Pokemon</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pokemon
+                .filter((pokemon) =>
+                  pokemon.name.english
+                    .toLowerCase()
+                    .includes(filter.toLowerCase())
+                )
+                .slice(0, 20)
+                .map((pokemon) => (
+                  <PokemonRow key={pokemon.id} pokemon={pokemon} />
+                ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
