@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export const PokemonRow = ({ pokemon }) => (
+export const PokemonRow = ({ pokemon, onSelect }) => (
   <tr>
     <td>{pokemon.name.english}</td>
     <td>{pokemon.type.join(", ")}</td>
@@ -12,4 +12,5 @@ PokemonRow.propTypes = {
     name: PropTypes.shape({ english: PropTypes.string }),
     type: PropTypes.arrayOf(PropTypes.string),
   }),
+  onSelect: PropTypes.func,
 };
