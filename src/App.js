@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import pokemon from "./pokemon.json";
+
 import { PokemonRow } from "./components/PokemonRow";
 import { PokemonInfo } from "./components/PokemonInfo";
 
 function App() {
+  const [pokemon, setPokemon] = React.useState([]);
   const [filter, setFilter] = React.useState("");
   const [selectedItem, setSelectedItem] = React.useState("");
 
@@ -12,6 +13,12 @@ function App() {
     setSelectedItem(pokemon);
     console.log(pokemon.name.english);
   };
+
+  React.useEffect(() => {
+    fetch("http://localhost:3000/pokemon.json")
+      .then((resp) => resp.json())
+      .then((data) => setPokemon(data));
+  }, []);
 
   return (
     <div
