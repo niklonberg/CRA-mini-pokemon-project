@@ -5,6 +5,7 @@ import { PokemonRow } from "./components/PokemonRow";
 
 function App() {
   const [filter, setFilter] = React.useState("");
+  const [selectedItem, setSelectedItem] = React.useState("");
 
   return (
     <div
@@ -45,6 +46,11 @@ function App() {
             </tbody>
           </table>
         </div>
+        {selectedItem && (
+          <div>
+            <h1>{selectedItem.name.english}</h1>
+          </div>
+        )}
       </div>
     </div>
   );
