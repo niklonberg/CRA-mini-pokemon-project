@@ -24,9 +24,14 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {pokemon.slice(0, 20).map((pokemon) => (
-            <PokemonRow key={pokemon.id} pokemon={pokemon} />
-          ))}
+          {pokemon
+            .filter((pokemon) =>
+              pokemon.name.english.toLowerCase().includes(filter.toLowerCase())
+            )
+            .slice(0, 20)
+            .map((pokemon) => (
+              <PokemonRow key={pokemon.id} pokemon={pokemon} />
+            ))}
         </tbody>
       </table>
     </div>
