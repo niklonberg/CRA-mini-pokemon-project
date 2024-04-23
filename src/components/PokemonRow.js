@@ -2,10 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import PokemonType from "../PokemonType";
-import PokemonContext from "../PokemonContext";
 
-const PokemonRow = ({ pokemon }) => {
-  const { setSelectedPokemon } = React.useContext(PokemonContext);
+const PokemonRow = ({ pokemon, onClick }) => {
   return (
     <tr>
       <td>{pokemon.name.english}</td>
@@ -14,7 +12,7 @@ const PokemonRow = ({ pokemon }) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setSelectedPokemon(pokemon)}
+          onClick={() => onClick(pokemon)}
         >
           Select
         </Button>
