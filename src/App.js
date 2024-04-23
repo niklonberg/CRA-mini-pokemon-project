@@ -30,7 +30,7 @@ function App() {
   const [filter, setFilter] = React.useState("");
   const [selectedPokemon, setSelectedPokemon] = React.useState("");
   const [state, dispatch] = React.useReducer(PokemonReducer, {
-    pokemon: [],
+    pokemonData: [],
     filter: "",
     selectedPokemon: "",
   });
@@ -38,10 +38,15 @@ function App() {
   React.useEffect(() => {
     fetch("http://localhost:3000/create-react-app/pokemon.json")
       .then((resp) => resp.json())
-      .then((data) => setPokemonData(data));
+      .then((data) =>
+        dispatch({
+          type: "SET_POKEMON_DATA",
+          payload: data,
+        })
+      );
   }, []);
 
-  if (!pokemonData) return <div>Loading data</div>;
+  if (!state.pokemonData) return <div>Loading data</div>;
 
   return (
     <PokemonContext.Provider
