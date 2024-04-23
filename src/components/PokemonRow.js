@@ -21,7 +21,6 @@ const PokemonRow = ({ pokemon, setSelectedItem }) => (
 
 PokemonRow.propTypes = {
   pokemon: PropTypes.shape(PokemonType).isRequired,
-  onSelect: PropTypes.func,
 };
 
 export default PokemonRow;
