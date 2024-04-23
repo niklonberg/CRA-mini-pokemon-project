@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import styled from "@emotion/styled";
 
+import PokemonContext from "./PokemonContext";
 import PokemonFilter from "./components/PokemonFilter";
 import PokemonTable from "./components/PokemonTable";
 import PokemonInfo from "./components/PokemonInfo";
@@ -37,20 +38,31 @@ function App() {
   if (!pokemonData) return <div>Loading data</div>;
 
   return (
-    <Container>
-      <Title>Pokemon search</Title>
-      <TwoColumnLayout>
-        <div>
-          <PokemonFilter filter={filter} setFilter={setFilter} />
-          <PokemonTable
-            pokemonData={pokemonData}
-            filter={filter}
-            setSelectedItem={setSelectedItem}
-          />
-        </div>
-        {selectedItem && <PokemonInfo {...selectedItem} />}
-      </TwoColumnLayout>
-    </Container>
+    <PokemonContext.Provider
+      value={{
+        pokemonData,
+        setPokemonData,
+        filter,
+        setFilter,
+        selectedItem,
+        setSelectedItem,
+      }}
+    >
+      <Container>
+        <Title>Pokemon search</Title>
+        <TwoColumnLayout>
+          <div>
+            <PokemonFilter filter={filter} setFilter={setFilter} />
+            <PokemonTable
+              pokemonData={pokemonData}
+              filter={filter}
+              setSelectedItem={setSelectedItem}
+            />
+          </div>
+          {selectedItem && <PokemonInfo {...selectedItem} />}
+        </TwoColumnLayout>
+      </Container>
+    </PokemonContext.Provider>
   );
 }
 
