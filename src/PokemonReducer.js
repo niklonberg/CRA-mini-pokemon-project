@@ -5,10 +5,10 @@ const PokemonReducer = (state, action) => {
         ...state,
         filter: action.payload,
       };
-    case "SET_POKEMON":
+    case "SET_POKEMON_DATA":
       return {
         ...state,
-        pokemon: action.payload,
+        pokemonData: action.payload,
       };
     case "SET_SELECTED_POKEMON":
       return {
@@ -20,4 +20,4 @@ const PokemonReducer = (state, action) => {
   }
 };
 
-export default PokemonReducer
+export default PokemonReducer;
