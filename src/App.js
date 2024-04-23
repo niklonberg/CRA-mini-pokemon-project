@@ -52,7 +52,7 @@ function App() {
         <Title>Pokemon search</Title>
         <TwoColumnLayout>
           <div>
-            <PokemonFilter filter={filter} setFilter={setFilter} />
+            <PokemonFilter />
             <PokemonTable
               pokemonData={pokemonData}
               filter={filter}
