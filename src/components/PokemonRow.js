@@ -5,7 +5,7 @@ import PokemonType from "../PokemonType";
 import PokemonContext from "../PokemonContext";
 
 const PokemonRow = ({ pokemon }) => {
-  const { setSelectedItem } = React.useContext(PokemonContext);
+  const { setSelectedPokemon } = React.useContext(PokemonContext);
   return (
     <tr>
       <td>{pokemon.name.english}</td>
@@ -14,7 +14,7 @@ const PokemonRow = ({ pokemon }) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setSelectedItem(pokemon)}
+          onClick={() => setSelectedPokemon(pokemon)}
         >
           Select
         </Button>

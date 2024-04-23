@@ -27,7 +27,7 @@ const TwoColumnLayout = styled.div`
 function App() {
   const [pokemonData, setPokemonData] = React.useState([]);
   const [filter, setFilter] = React.useState("");
-  const [selectedItem, setSelectedItem] = React.useState("");
+  const [selectedPokemon, setSelectedPokemon] = React.useState("");
 
   React.useEffect(() => {
     fetch("http://localhost:3000/create-react-app/pokemon.json")
@@ -44,8 +44,8 @@ function App() {
         setPokemonData,
         filter,
         setFilter,
-        selectedItem,
-        setSelectedItem,
+        selectedPokemon,
+        setSelectedPokemon,
       }}
     >
       <Container>
@@ -55,7 +55,7 @@ function App() {
             <PokemonFilter />
             <PokemonTable />
           </div>
-          {selectedItem && <PokemonInfo {...selectedItem} />}
+          {selectedPokemon && <PokemonInfo {...selectedPokemon} />}
         </TwoColumnLayout>
       </Container>
     </PokemonContext.Provider>
