@@ -20,7 +20,7 @@ const PokemonTable = ({ pokemonData, filter, setSelectedItem }) => {
             <PokemonRow
               key={pokemon.id}
               pokemon={pokemon}
-              onSelect={setSelectedItem}
+              setSelectedItem={setSelectedItem}
             />
           ))}
       </tbody>
