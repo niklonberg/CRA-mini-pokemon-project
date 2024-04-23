@@ -53,11 +53,7 @@ function App() {
         <TwoColumnLayout>
           <div>
             <PokemonFilter />
-            <PokemonTable
-              pokemonData={pokemonData}
-              filter={filter}
-              setSelectedItem={setSelectedItem}
-            />
+            <PokemonTable />
           </div>
           {selectedItem && <PokemonInfo {...selectedItem} />}
         </TwoColumnLayout>
