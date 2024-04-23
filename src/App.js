@@ -29,7 +29,7 @@ const Input = styled.input`
 `;
 
 function App() {
-  const [pokemon, setPokemon] = React.useState([]);
+  const [pokemonData, setPokemonData] = React.useState([]);
   const [filter, setFilter] = React.useState("");
   const [selectedItem, setSelectedItem] = React.useState("");
 
@@ -41,10 +41,10 @@ function App() {
   React.useEffect(() => {
     fetch("http://localhost:3000/pokemon.json")
       .then((resp) => resp.json())
-      .then((data) => setPokemon(data));
+      .then((data) => setPokemonData(data));
   }, []);
 
-  if (!pokemon) return <div>Loading data</div>;
+  if (!pokemonData) return <div>Loading data</div>;
 
   return (
     <Container>
@@ -60,7 +60,7 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              {pokemon
+              {pokemonData
                 .filter((pokemon) =>
                   pokemon.name.english
                     .toLowerCase()
