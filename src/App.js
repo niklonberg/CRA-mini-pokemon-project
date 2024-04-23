@@ -1,12 +1,15 @@
 import React from "react";
 import "./App.css";
 import styled from "@emotion/styled";
+import { createStore } from "redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
 
-import PokemonContext from "./PokemonContext";
 import PokemonFilter from "./components/PokemonFilter";
 import PokemonTable from "./components/PokemonTable";
 import PokemonInfo from "./components/PokemonInfo";
 import PokemonReducer from "./PokemonReducer";
+
+const store = createStore(PokemonReducer);
 
 const Container = styled.div`
   padding-inline: 2rem;
@@ -26,11 +29,8 @@ const TwoColumnLayout = styled.div`
 `;
 
 function App() {
-  const [state, dispatch] = React.useReducer(PokemonReducer, {
-    filter: "",
-    pokemonData: [],
-    selectedPokemon: null,
-  });
+  const dispatch = useDispatch();
+  const pokemonData = useSelector((state) => state.pokemonData);
 
   React.useEffect(() => {
     fetch("http://localhost:3000/create-react-app/pokemon.json")
@@ -43,91 +43,24 @@ function App() {
       );
   }, []);
 
-  if (!state.pokemonData) return <div>Loading data</div>;
+  if (!pokemonData) return <div>Loading data</div>;
 
   return (
-    <PokemonContext.Provider value={{ state, dispatch }}>
-      <Container>
-        <Title>Pokemon search</Title>
-        <TwoColumnLayout>
-          <div>
-            <PokemonFilter />
-            <PokemonTable />
-          </div>
-          <PokemonInfo />
-        </TwoColumnLayout>
-      </Container>
-    </PokemonContext.Provider>
+    <Container>
+      <Title>Pokemon search</Title>
+      <TwoColumnLayout>
+        <div>
+          <PokemonFilter />
+          <PokemonTable />
+        </div>
+        <PokemonInfo />
+      </TwoColumnLayout>
+    </Container>
   );
 }
 
-// Class component version of App
-// I must say, i prefer function version above!
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       pokemon: [],
-//       filter: "",
-//       selectedItem: "",
-//     };
-//   }
-
-//   componentDidMount() {
-//     fetch("http://localhost:3000/pokemon.json")
-//       .then((resp) => resp.json())
-//       .then((data) => this.setState({ ...this.state, pokemon: data }));
-//   }
-
-//   handleOnSelect = (pokemon) => {
-//     this.setState({ selectedItem: pokemon });
-//     console.log(this.state.selectedItem.name);
-//   };
-
-//   render() {
-//     return (
-//       <Container>
-//         <Title>Pokemon search</Title>
-//         <TwoColumnLayout>
-//           <div>
-//             <Input
-//               value={this.state.filter}
-//               onChange={(e) =>
-//                 this.setState({ ...this.state, filter: e.target.value })
-//               }
-//             />
-//             <table width="100%">
-//               <thead>
-//                 <tr>
-//                   <th>Pokemon</th>
-//                   <th>Type</th>
-//                 </tr>
-//               </thead>
-//               <tbody>
-//                 {this.state.pokemon
-//                   .filter((pokemon) =>
-//                     pokemon.name.english
-//                       .toLowerCase()
-//                       .includes(this.state.filter.toLowerCase())
-//                   )
-//                   .slice(0, 20)
-//                   .map((pokemon) => (
-//                     <PokemonRow
-//                       key={pokemon.id}
-//                       pokemon={pokemon}
-//                       onSelect={this.handleOnSelect}
-//                     />
-//                   ))}
-//               </tbody>
-//             </table>
-//           </div>
-//           {this.state.selectedItem && (
-//             <PokemonInfo {...this.state.selectedItem} />
-//           )}
-//         </TwoColumnLayout>
-//       </Container>
-//     );
-//   }
-// }
-
-export default App;
+export default () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);

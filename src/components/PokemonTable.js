@@ -1,12 +1,11 @@
 import React from "react";
 import PokemonRow from "./PokemonRow";
-import PokemonContext from "../PokemonContext";
+import { useSelector, useDispatch } from "react-redux";
 
 const PokemonTable = () => {
-  const {
-    state: { pokemonData, filter },
-    dispatch,
-  } = React.useContext(PokemonContext);
+  const dispatch = useDispatch();
+  const pokemonData = useSelector((state) => state.pokemonData);
+  const filter = useSelector((state) => state.filter);
 
   return (
     <table width="100%">
