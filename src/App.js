@@ -3,7 +3,7 @@ import "./App.css";
 import styled from "@emotion/styled";
 
 import PokemonRow from "./components/PokemonRow";
-import { PokemonInfo } from "./components/PokemonInfo";
+import PokemonInfo from "./components/PokemonInfo";
 
 const Container = styled.div`
   padding-inline: 2rem;
