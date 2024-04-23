@@ -3,8 +3,7 @@ import PokemonRow from "./PokemonRow";
 import PokemonContext from "../PokemonContext";
 
 const PokemonTable = () => {
-  const { pokemonData, filter, setSelectedItem } =
-    React.useContext(PokemonContext);
+  const { pokemonData, filter } = React.useContext(PokemonContext);
 
   return (
     <table width="100%">
@@ -21,11 +20,7 @@ const PokemonTable = () => {
           )
           .slice(0, 20)
           .map((pokemon) => (
-            <PokemonRow
-              key={pokemon.id}
-              pokemon={pokemon}
-              setSelectedItem={setSelectedItem}
-            />
+            <PokemonRow key={pokemon.id} pokemon={pokemon} />
           ))}
       </tbody>
     </table>
