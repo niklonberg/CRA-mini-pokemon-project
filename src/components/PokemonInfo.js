@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PokemonType from "../PokemonType";
 
-export const PokemonInfo = ({ name, base }) => (
+const PokemonInfo = ({ name, base }) => (
   <div>
     <h1>{name.english}</h1>
     <table>
@@ -22,14 +22,6 @@ export const PokemonInfo = ({ name, base }) => (
   </div>
 );
 
-PokemonInfo.propTypes = {
-  name: PropTypes.shape({ english: PropTypes.string }),
-  base: PropTypes.shape({
-    HP: PropTypes.number.isRequired,
-    Attack: PropTypes.number.isRequired,
-    Defense: PropTypes.number.isRequired,
-    "Sp. Attack": PropTypes.number.isRequired,
-    "Sp. Defense": PropTypes.number.isRequired,
-    Speed: PropTypes.number.isRequired,
-  }),
-};
+PokemonInfo.propTypes = PokemonType;
+
+export default PokemonInfo;
