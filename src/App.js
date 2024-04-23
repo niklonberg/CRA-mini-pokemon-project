@@ -44,6 +44,8 @@ function App() {
       .then((data) => setPokemon(data));
   }, []);
 
+  if (!pokemon) return <div>Loading data</div>;
+
   return (
     <Container>
       <Title>Pokemon search</Title>
