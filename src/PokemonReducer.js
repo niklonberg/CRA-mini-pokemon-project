@@ -1,4 +1,11 @@
-const PokemonReducer = (state, { type, payload }) => {
+const PokemonReducer = (
+  state = {
+    pokemonData: [],
+    filter: "",
+    selectedPokemon: null,
+  },
+  { type, payload }
+) => {
   switch (type) {
     case "SET_FILTER":
       return {
@@ -16,7 +23,7 @@ const PokemonReducer = (state, { type, payload }) => {
         selectedPokemon: payload,
       };
     default:
-      console.log("No action");
+      return state;
   }
 };
 
