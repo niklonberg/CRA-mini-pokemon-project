@@ -1,12 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "@mui/material/Button";
 
 export const PokemonRow = ({ pokemon, onSelect }) => (
   <tr>
     <td>{pokemon.name.english}</td>
     <td>{pokemon.type.join(", ")}</td>
     <td>
-      <button onClick={() => onSelect(pokemon)}>Select</button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => onSelect(pokemon)}
+      >
+        Select
+      </Button>
     </td>
   </tr>
 );
