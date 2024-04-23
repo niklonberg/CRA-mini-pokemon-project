@@ -1,22 +1,22 @@
-const PokemonReducer = (state, action) => {
-  switch (action) {
+const PokemonReducer = (state, { type, payload }) => {
+  switch (type) {
     case "SET_FILTER":
       return {
         ...state,
-        filter: action.payload,
+        filter: payload,
       };
     case "SET_POKEMON_DATA":
       return {
         ...state,
-        pokemonData: action.payload,
+        pokemonData: payload,
       };
     case "SET_SELECTED_POKEMON":
       return {
         ...state,
-        selectedPokemon: action.payload,
+        selectedPokemon: payload,
       };
     default:
-      throw new Error("No action");
+      console.log("No action");
   }
 };
 
