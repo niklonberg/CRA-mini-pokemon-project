@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import styled from "@emotion/styled";
 
+import PokemonFilter from "./components/PokemonFilter";
 import PokemonRow from "./components/PokemonRow";
 import PokemonInfo from "./components/PokemonInfo";
 
@@ -20,12 +21,6 @@ const TwoColumnLayout = styled.div`
   display: grid;
   grid-template-columns: 70% 30%;
   grid-column-gap: 1rem;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  font-size: x-large;
-  padding: 0.4rem;
 `;
 
 function App() {
@@ -51,7 +46,7 @@ function App() {
       <Title>Pokemon search</Title>
       <TwoColumnLayout>
         <div>
-          <Input value={filter} onChange={(e) => setFilter(e.target.value)} />
+          <PokemonFilter filter={filter} setFilter={setFilter} />
           <table width="100%">
             <thead>
               <tr>
