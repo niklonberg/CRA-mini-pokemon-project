@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import styled from "@emotion/styled";
 
-import { PokemonRow } from "./components/PokemonRow";
+import PokemonRow from "./components/PokemonRow";
 import { PokemonInfo } from "./components/PokemonInfo";
 
 const Container = styled.div`
