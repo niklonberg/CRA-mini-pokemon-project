@@ -20,7 +20,7 @@ const PokemonRow = ({ pokemon, onSelect }) => (
 );
 
 PokemonRow.propTypes = {
-  pokemon: PropTypes.arrayOf(PokemonType),
+  pokemon: PropTypes.shape(PokemonType).isRequired,
   onSelect: PropTypes.func,
 };
 
