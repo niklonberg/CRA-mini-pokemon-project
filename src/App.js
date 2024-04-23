@@ -3,7 +3,7 @@ import "./App.css";
 import styled from "@emotion/styled";
 
 import PokemonFilter from "./components/PokemonFilter";
-import PokemonRow from "./components/PokemonRow";
+import PokemonTable from "./components/PokemonTable";
 import PokemonInfo from "./components/PokemonInfo";
 
 const Container = styled.div`
@@ -28,13 +28,8 @@ function App() {
   const [filter, setFilter] = React.useState("");
   const [selectedItem, setSelectedItem] = React.useState("");
 
-  const handleOnSelect = (pokemon) => {
-    setSelectedItem(pokemon);
-    console.log(pokemon.name.english);
-  };
-
   React.useEffect(() => {
-    fetch("http://localhost:3000/pokemon.json")
+    fetch("http://localhost:3000/create-react-app/pokemon.json")
       .then((resp) => resp.json())
       .then((data) => setPokemonData(data));
   }, []);
@@ -47,30 +42,11 @@ function App() {
       <TwoColumnLayout>
         <div>
           <PokemonFilter filter={filter} setFilter={setFilter} />
-          <table width="100%">
-            <thead>
-              <tr>
-                <th>Pokemon</th>
-                <th>Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pokemonData
-                .filter((pokemon) =>
-                  pokemon.name.english
-                    .toLowerCase()
-                    .includes(filter.toLowerCase())
-                )
-                .slice(0, 20)
-                .map((pokemon) => (
-                  <PokemonRow
-                    key={pokemon.id}
-                    pokemon={pokemon}
-                    onSelect={handleOnSelect}
-                  />
-                ))}
-            </tbody>
-          </table>
+          <PokemonTable
+            pokemonData={pokemonData}
+            filter={filter}
+            setSelectedItem={setSelectedItem}
+          />
         </div>
         {selectedItem && <PokemonInfo {...selectedItem} />}
       </TwoColumnLayout>
