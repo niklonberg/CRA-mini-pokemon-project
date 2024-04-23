@@ -6,7 +6,6 @@ import PokemonContext from "./PokemonContext";
 import PokemonFilter from "./components/PokemonFilter";
 import PokemonTable from "./components/PokemonTable";
 import PokemonInfo from "./components/PokemonInfo";
-import PokemonReducer from "./PokemonReducer";
 
 const Container = styled.div`
   padding-inline: 2rem;
@@ -29,24 +28,14 @@ function App() {
   const [pokemonData, setPokemonData] = React.useState([]);
   const [filter, setFilter] = React.useState("");
   const [selectedPokemon, setSelectedPokemon] = React.useState("");
-  const [state, dispatch] = React.useReducer(PokemonReducer, {
-    pokemonData: [],
-    filter: "",
-    selectedPokemon: "",
-  });
 
   React.useEffect(() => {
     fetch("http://localhost:3000/create-react-app/pokemon.json")
       .then((resp) => resp.json())
-      .then((data) =>
-        dispatch({
-          type: "SET_POKEMON_DATA",
-          payload: data,
-        })
-      );
+      .then((data) => setPokemonData(data));
   }, []);
 
-  if (!state.pokemonData) return <div>Loading data</div>;
+  if (!pokemonData) return <div>Loading data</div>;
 
   return (
     <PokemonContext.Provider
@@ -57,8 +46,6 @@ function App() {
         setFilter,
         selectedPokemon,
         setSelectedPokemon,
-        state,
-        dispatch,
       }}
     >
       <Container>
