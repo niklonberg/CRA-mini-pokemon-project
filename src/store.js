@@ -21,7 +21,7 @@ const useStore = create((set) => ({
     })),
 }));
 
-fetch("http://localhost:3000/create-react-app/pokemon.json")
+fetch("https://niklonberg.github.io/create-react-app/pokemon.json")
   .then((resp) => resp.json())
   .then((pokemonData) =>
     useStore.setState((state) => ({
